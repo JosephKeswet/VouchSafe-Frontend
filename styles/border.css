@@ -1,0 +1,13 @@
+.border-gradient {
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(45deg, #1937AD, #F93DE6) border-box;
+  border: 2px solid transparent;
+  border-radius: 50px;
+}
+
+.card-border-gradient {
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(45deg, #1937AD, #F93DE6) border-box;
+  border: 2px solid transparent;
+  border-radius: 25px;
+}
