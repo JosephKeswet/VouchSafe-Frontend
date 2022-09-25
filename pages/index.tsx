@@ -1,6 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useRef } from 'react'
 import Footer from '../components/Footer'
 import Hero from '../components/landingpage/Hero'
 import Middle from '../components/landingpage/Middle'
@@ -12,20 +14,24 @@ import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   
-
+  
   return (
-    <div className='h-screen snap-y snap-mandatory overflow-scroll'>
-       <div className='mb-[155px]'>
-          <Navbar/>
-       </div>
-       <div id='hero'>
+    <div className='h-screen snap-y snap-mandatory'>
+          <Navbar />
+   
+       <div id='hero' className='pt-[100px]' > 
           <Hero/>
         </div>
-        <div id='works'>
+        
+        <div id='works'/> 
           <Middle/>
-        </div>
+
+        <div id='use'/>
           <Overview/>
+          
+        <div id='pricing'/>
           <Pricing/>
+
           <Questions/>
           <Footer/>
     </div>

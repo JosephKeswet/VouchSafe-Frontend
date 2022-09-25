@@ -24,7 +24,7 @@ const PriceCard = ({services,price,annualPay}: Props) => {
                             <div className='mt-[40px]'>
                             {services.map(service =>( 
 
-                                <div className='flex items-center gap-[10px] mb-[15px]'>
+                                <div className='flex items-center gap-[10px] mb-[15px]' key={service.id}>
                                     <div className='flex items-center justify-center bg-[#797979] rounded-[30px] w-[25px] h-[25px]'>
                                         <h1 className='text-white text-base leading-[17px] font-Anybody font-normal'>{service.id}</h1>
                                     </div>

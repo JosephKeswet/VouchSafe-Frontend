@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import LogoWhite from '../Assets/logo/VouchSafe_Logo_White.png'
 import { FaFacebookSquare, FaInstagramSquare, FaTwitter } from 'react-icons/fa';
+import { Link } from 'react-scroll';
 
 
 type Props = {}
@@ -19,25 +20,37 @@ const Footer = (props: Props) => {
 
                 <section className='flex justify-between w-[550px] text-white'>
                     <ul className='text-base leading-[32px] font-Anybody font-normal'>
-                        <li>Support</li>
-                        <li>Learn</li>
-                        <li>Privacy</li>
-                        <li>Terms</li>
+                        <li className='cursor-pointer'>Support</li>
+                        <li className='cursor-pointer'>Learn</li>
+                        <li className='cursor-pointer'>Privacy</li>
+                        <li className='cursor-pointer'>Terms</li>
                     </ul>
 
                     <ul className='text-base leading-[32px] font-Anybody font-normal'>
-                        <li>How it works</li>
-                        <li>What we do</li>
-                        <li>Pricing</li>
-                        <li>Developer</li>
+                        <li className='cursor-pointer'>
+                        <Link   smooth={true} spy={true} duration={500} offset={5} to="works">
+                            How it works
+                        </Link>    
+                        </li>
+                        <li className='cursor-pointer'>
+                        <Link   smooth={true} spy={true} duration={500} offset={5} to="use">
+                            What we do
+                        </Link>    
+                        </li>
+                        <li className='cursor-pointer'>
+                        <Link   smooth={true} spy={true} duration={500} offset={5} to="pricing">
+                            Pricing
+                        </Link>    
+                        </li>
+                        <li className='cursor-pointer'>Developer</li>
                     </ul>
 
                     <div className='text-base leading-[32px] font-Anybody font-normal'>
                         <h1>support@vouchsafe.com</h1>
                         <ul className='flex justify-end gap-[10px]'>
-                            <li><FaFacebookSquare className='w-6 h-6 text-white'/></li>
-                            <li><FaInstagramSquare className='w-6 h-6 text-white'/></li>
-                            <li><FaTwitter className='w-6 h-6 text-white'/></li>
+                            <li className='cursor-pointer'><FaFacebookSquare className='w-6 h-6 text-white'/></li>
+                            <li className='cursor-pointer'><FaInstagramSquare className='w-6 h-6 text-white'/></li>
+                            <li className='cursor-pointer'><FaTwitter className='w-6 h-6 text-white'/></li>
                         </ul>
                     </div>
                 </section>
