@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     fontFamily:{
         Anybody: ['Anybody', 'cursive'],
-        Courgette:['Courgette', 'cursive']
+        Courgette:['Courgette', 'cursive'],
+        Poppins:['Poppins', 'sans-serif']
     },
     extend: {},
   },
