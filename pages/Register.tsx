@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import Register_Bg from '../Assets/img/Register_Bg.png'
 import Button from '../components/Button'
 import Input from '../components/registration/Input'
@@ -10,6 +10,34 @@ import { motion } from "framer-motion"
 type Props = {}
 
 const Register = (props: Props) => {
+
+  const baseUrl = 'https://vouchsafe-backend-api.herokuapp.com'
+  const [email,setEmail] = useState('')
+  const [firstName,setFirstName] = useState('')
+  const [lastName,setLastName] = useState('')
+  const [password,setPassword] = useState('')
+  
+  async function signUp() {
+    let data = {email,firstName,lastName}
+    console.warn(data)
+
+    let result = fetch(`${baseUrl}/api/v1/vouchsafe/auth/signup/`,{
+      method:'POST',
+      body:JSON.stringify(data),
+      headers:{
+        "Content-Type":"application/json",
+        "Accept":"application/json"
+      }
+    })
+
+    result = (await result).json()
+    console.warn("result",result)
+  }
+
+
+
+
+
   return (
     <div>
         <section className="relative overflow-hidden h-screen  ">
@@ -71,20 +99,54 @@ const Register = (props: Props) => {
                     <form action="">
                         <div className='mx-auto'>
                             <div className='flex gap-[10px] mb-[20px]'>
-                                <Input width = 'w-[170px]' label='First name' type='text'/>
-                                <Input width = 'w-[170px]' label='Last name' type='text'/>
+
+                            {/* Firstname */}
+                            <div className={`w-[170px] h-[64px]`}>
+                              <label className='text-left h-[21px] text-sm font-Poppins font-normal leading-[21px] align-top pl-4 mb-[3px]'>First name</label>
+                                <input type='text' onChange={(e) =>{
+                                  setFirstName(e.target.value)
+                                }} name="" value={firstName} id="" className={`w-[170px] h-[40px] pl-4 outline-none border border-solid border-[#E1E1E1] rounded-[50px]`} />
+                              </div>
+
+                              {/* Lastname */}
+                              <div className={`w-[170px] h-[64px]`}>
+                              <label className='text-left h-[21px] text-sm font-Poppins font-normal leading-[21px] align-top pl-4 mb-[3px]'>Last name</label>
+                                <input type='text' name="" value={lastName} onChange={(e) =>{
+                                  setLastName(e.target.value)
+                                }} id="" className={`w-[170px] h-[40px] pl-4 outline-none border border-solid border-[#E1E1E1] rounded-[50px]`} />
+                              </div>
+
+                              
                             </div>
+
                             <div className='space-y-5'>
-                                <Input width = 'w-[350px]' label='Email address' type='email'/>
-                                <Input width = 'w-[350px]' label='Password' type='password'/>
-                                <Input width = 'w-[350px]' label='Confirm Password' type='password'/>
+
+                              {/* Email */}
+                            <div className={`w-[350px] h-[64px]`}>
+                              <label className='text-left h-[21px] text-sm font-Poppins font-normal leading-[21px] align-top pl-4 mb-[3px]'>Email address</label>
+                                <input type='email' name="" id="" value={email} onChange={(e) =>{
+                                  setEmail(e.target.value)
+                                }} className={`w-[350px] h-[40px] pl-4 outline-none border border-solid border-[#E1E1E1] rounded-[50px]`} />
+                              </div>
+
+                              {/* Password */}
+                              <div className={`w-[350px] h-[64px]`}>
+                              <label className='text-left h-[21px] text-sm font-Poppins font-normal leading-[21px] align-top pl-4 mb-[3px]'>Password</label>
+                                <input type='password' name="" value={password} onChange={(e) =>{
+                                  setPassword(e.target.value)
+                                }} id="" className={`w-[350px] h-[40px] pl-4 outline-none border border-solid border-[#E1E1E1] rounded-[50px]`} />
+                              </div>
+
                             </div>
                             <div className='mt-[30px] mb-[30px]'>
                                 <p className='text-sm text-[#292929] leading-[21px] font-Poppins font-normal'>By signing up, you agree to our <Link href='#' ><span className='text-[#1937AD] text-sm leading-[21px] font-Poppins font-normal underline underline-offset-1 cursor-pointer'>Terms of Use and Privacy Policy. </span></Link></p>
                             </div>
                             <div>
-                                <Button text='Create account' width='w-[350px]' height='h-[40px]' radius='rounded-[30px]' font='font-Poppins'
-                                 />
+                                <div className={`flex items-center justify-center hover:opacity-70 transition-all duration-500 bg-[#1937AD] text-white text-sm  font-Poppins font-normal 
+                                cursor-pointer
+                                w-[350px] h-[40px] rounded-[30px]`}>
+                                    <button onClick={signUp}>Create account</button>
+                                </div>
                             </div>
                             <div className='mt-[30px]'>
                                 <p className='text-sm text-[#292929] leading-[21px] font-Poppins font-normal text-left'>I already have an account, <Link href='/Login' ><span className='text-[#1937AD] text-sm leading-[21px] font-Poppins font-normal underline underline-offset-1 cursor-pointer'>Sign in.</span></Link></p>

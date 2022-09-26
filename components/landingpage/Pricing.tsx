@@ -53,7 +53,9 @@ const Pricing = (props: Props) => {
                 <div className='w-[250px] h-[36px] mx-auto mt-[61px]'>
                             <div className='px-[24px]'>
                             <Link href="/Register">
+                              <a>
                               <Button text='Try Vouchsafe free' width='w-[213px]' font='font-Anybody' height='h-[44px]' radius='rounded-[30px]'/>
+                              </a>
                             </Link>
                             </div>
                             <p className='pt-[20px] text-[14px] text-[#797979] font-Anybody italic text-center'>Try Vouchsafe free for a month</p>
