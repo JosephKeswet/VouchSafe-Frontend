@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import RegBg from '../Assets/img/Reg_Bg_Left.png'
+import Register_Bg from '../Assets/img/Register_Bg.png'
 import Button from '../components/Button'
 import Input from '../components/registration/Input'
 import LogoWhite from '../Assets/logo/VouchSafe_Logo_White.svg'
@@ -12,23 +12,57 @@ type Props = {}
 const Register = (props: Props) => {
   return (
     <div>
-        <motion.div 
-        initial={{x:400}}
-        animate={{x:0}}
-        transition={{
-            duration:0.2,
-            type: "spring", 
-            stiffness: 100 
-        }}
-        className="relative bg-[url('../Assets/img/Reg_Bg_Left.png')] w-screen h-screen bg-cover">
-            <Link href='/'>
+        <section className="relative overflow-hidden h-screen  ">
+                    <div className='relative overflow-hidden'>
+                        <motion.div
+                                 initial={{ x:800 }}
+                                 animate={{
+                                   x:0
+                                 }}
+                                 transition={{
+                                   duration: 0.3,
+                                //    type: "spring",
+                                //    stiffness: 100
+                                 }}
+                        
+                        >
+                        <Image src={Register_Bg} alt="Registration background image" objectFit='contain'/>
+                        </motion.div>
+                        <motion.div 
+                        initial={{
+                            x:300,
+                            rotate:0
+                          }}
+                          animate={{
+                            x:0,
+                            rotate:24
+                          }}
+                          transition={{
+                            duration:0.3
+                          }}
+                        className='absolute z-30 bottom-[800px] left-[55px] rounded-[10px]  w-[459px] h-[218px]  bg-gradient-to-r  from-[#1937AD] to-[#F93DE6]'/>
+                    </div>
+         
+
+
+            {/* <Link href='/'>
                 <div className='absolute flex items-center gap-[10px] top-[69px] left-[101px] w-[210px] h-[43px] z-30 cursor-pointer'>
                     <Image src={LogoWhite} alt="Vouchsafe logo white" width={43} height={43} />
                     <h1 className='text-white text-[27px] font-Anybody font-bold leading-[29px]'>vouchsafe</h1>
                 </div>
-            </Link>
+            </Link> */}
        
-                <div className="ml-[600px] pt-16 w-[925px] h-screen">
+                <motion.div 
+                         initial={{ x: 400 }}
+                         animate={{
+                           x: 0,
+                         }}
+                         transition={{
+                           duration: 0.9,
+                           type: "spring",
+                           stiffness: 100
+                         }}
+                className="pt-16 w-[925px] absolute bottom-0 left-[500px] z-50 right-0  h-screen">
                     <main className='mx-auto w-[350px] h-[611px] pt-[20px]'>
                         <div className='w-[320px] h-[72px] mb-[30px] mx-auto'>
                             <h1 className='bg-clip-text bg-gradient-to-r  from-[#1937AD] to-[#F93DE6] text-transparent text-[32px] text-center font-Poppins font-normal leading-[48px]'>Create account</h1>
@@ -58,9 +92,9 @@ const Register = (props: Props) => {
                         </div>
                     </form>
                     </main>
-                </div>
+                </motion.div>
 
-        </motion.div>
+        </section>
     </div>
   )
 }
