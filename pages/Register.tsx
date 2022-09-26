@@ -45,12 +45,12 @@ const Register = (props: Props) => {
          
 
 
-            {/* <Link href='/'>
+            <Link href='/'>
                 <div className='absolute flex items-center gap-[10px] top-[69px] left-[101px] w-[210px] h-[43px] z-30 cursor-pointer'>
                     <Image src={LogoWhite} alt="Vouchsafe logo white" width={43} height={43} />
                     <h1 className='text-white text-[27px] font-Anybody font-bold leading-[29px]'>vouchsafe</h1>
                 </div>
-            </Link> */}
+            </Link>
        
                 <motion.div 
                          initial={{ x: 400 }}

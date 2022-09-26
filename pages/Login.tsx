@@ -15,12 +15,12 @@ const Login = (props: Props) => {
   return (
     <div className=''>
       <section className="relative  h-screen ">
-        {/* <Link href='/'>
+        <Link href='/'>
           <div className='absolute flex items-center gap-[10px] top-[69px] left-[101px] w-[210px] h-[43px] z-30 cursor-pointer '>
             <Image src={Logo} alt="Vouchsafe logo white" width={43} height={43} />
             <h1 className='text-[#1937AD] text-[27px] font-Anybody font-bold leading-[29px]'>vouchsafe</h1>
           </div>
-        </Link> */}
+        </Link>
 
         <motion.div 
            initial={{ x: -400 }}
