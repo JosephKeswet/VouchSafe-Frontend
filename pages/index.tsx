@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import Footer from '../components/Footer'
 import Hero from '../components/landingpage/Hero'
 import Middle from '../components/landingpage/Middle'
@@ -13,10 +13,12 @@ import Navbar from '../components/Navbar'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
+  const [user,setUser] = useState(false)
   
   
   return (
     <div className='h-screen snap-y snap-mandatory'>
+      
           <Navbar />
    
        <div id='hero' className='pt-[100px]' > 

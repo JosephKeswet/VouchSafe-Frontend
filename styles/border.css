@@ -5,6 +5,15 @@
   border-radius: 50px;
 }
 
+.icon-border-gradient:hover {
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(45deg, #1937AD, #F93DE6) border-box;
+  border: 1px solid transparent;
+  transition: all;
+  transition-duration: 1.4s;
+  transition-timing-function: ease;
+}
+
 .card-border-gradient {
   background: linear-gradient(#fff, #fff) padding-box,
               linear-gradient(45deg, #1937AD, #F93DE6) border-box;
@@ -18,3 +27,11 @@
   border: 4px solid transparent;
   border-radius: 30px;
 }
+
+.business-border-gradient:hover {
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(45deg, #1937AD, #F93DE6) border-box;
+  border: 1px solid transparent;
+  border-radius: 50px;
+}
+

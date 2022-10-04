@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import React, { useRef, useState } from 'react'
+import React, { ReactEventHandler, useRef, useState } from 'react'
 import Logo from '../Assets/logo/VouchSafe_Logo.svg'
 import Button from './Button'
 import Link from 'next/link'
+import {Link as ScrollLink} from 'react-scroll'
 import { useActiveMenu } from "react-active-menu";
 
 
@@ -11,14 +12,24 @@ import { useActiveMenu } from "react-active-menu";
 
 const Navbar = () => {
   const router = useRouter()
-  const [active,setActive] = useState(true)
+  const [color,setColor] = useState('')
 
-  // const getColor = ()=>{  
+  // const getColor = (curr:string)=>{  
   //   if (active == false) {
   //     setActive(true)
   //   }
   //   console.log(active)
   // }
+
+
+
+  const handleClick = (e:React.SyntheticEvent,curr:string) =>{
+      if (e.currentTarget.id === curr) {
+        setColor('text-blue-500')
+      }else{
+        setColor('')
+      }
+  }
 
 
   
@@ -37,23 +48,27 @@ const Navbar = () => {
     
         
         <ul className='flex items-center justify-between px-[5px] w-[647px] h-[44px] border border-solid border-[#E1E1E1] rounded-[30px] '>
-        {/* <Link   smooth={true} spy={true} duration={500} offset={5} to="hero"> */}
+        <ScrollLink smooth={true} spy={true} duration={500} offset={5} to="hero">
           <li className='flex items-center justify-center rounded-[30px] text-sm text-white leading-[14px] font-normal
           font-Anybody  w-[56px] h-[34px] cursor-pointer bg-[#1937AD]'>Info</li>
-          {/* </Link> */}
+        </ScrollLink>
 
-        {/* <Link  smooth={true} spy={true} duration={500} offset={5} to="works"> */}
-          <li className='text-sm text-[#797979] leading-[14px] font-Anybody font-normal w-[119px] cursor-pointer'
-          // onClick={() => getColor('works')}
+        <ScrollLink smooth={true} spy={true} duration={500} offset={5} to="works">
+          <li className= {`${color} text-sm text-[#797979] leading-[14px] font-Anybody font-normal w-[119px] cursor-pointer`}
+            // id='hey'
+            // onClick={(e) => handleClick(e,'hey')}
           >How it works</li>
-          {/* </Link> */}
-        {/* <Link   smooth={true} spy={true} duration={500} offset={5} to="use"> */}
+        </ScrollLink>
+
+        <ScrollLink smooth={true} spy={true} duration={500} offset={5} to="use">
           <li className='text-sm text-[#797979] leading-[14px] font-Anybody font-normal w-[110px] cursor-pointer'
+            // id='hi'
+            // onClick={(e) => handleClick(e,'hi')}
           >What we do</li>
-          {/* </Link> */}
-        {/* <Link  smooth={true} spy={true} duration={500} offset={5} to="pricing"> */}
+          </ScrollLink>
+          <ScrollLink smooth={true} spy={true} duration={500} offset={5} to="pricing">
           <li className='text-sm text-[#797979] leading-[14px] font-Anybody font-normal w-[78px] cursor-pointer'>Pricing</li>
-          {/* </Link> */}
+          </ScrollLink>
 
  
           <li className='text-sm text-[#797979] leading-[14px] font-Anybody font-normal w-[100px] cursor-pointer'>Developer</li>
