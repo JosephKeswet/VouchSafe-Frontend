@@ -48,25 +48,24 @@ const Navbar = () => {
     
         
         <ul className='flex items-center justify-between px-[5px] w-[647px] h-[44px] border border-solid border-[#E1E1E1] rounded-[30px] '>
-        <ScrollLink smooth={true} spy={true} duration={500} offset={5} to="hero">
+        <ScrollLink smooth={true} spy={true} activeClass="active" duration={500} offset={5} to="hero">
           <li className='flex items-center justify-center rounded-[30px] text-sm text-white leading-[14px] font-normal
           font-Anybody  w-[56px] h-[34px] cursor-pointer bg-[#1937AD]'>Info</li>
         </ScrollLink>
 
-        <ScrollLink smooth={true} spy={true} duration={500} offset={5} to="works">
+        <ScrollLink smooth={true} spy={true} activeClass="active" duration={500} offset={5} to="works">
+
           <li className= {`${color} text-sm text-[#797979] leading-[14px] font-Anybody font-normal w-[119px] cursor-pointer`}
-            // id='hey'
-            // onClick={(e) => handleClick(e,'hey')}
-          >How it works</li>
+          >
+            How it works</li>
         </ScrollLink>
 
-        <ScrollLink smooth={true} spy={true} duration={500} offset={5} to="use">
+        <ScrollLink smooth={true} spy={true} duration={500} activeClass="active" offset={5} to="use">
           <li className='text-sm text-[#797979] leading-[14px] font-Anybody font-normal w-[110px] cursor-pointer'
-            // id='hi'
-            // onClick={(e) => handleClick(e,'hi')}
           >What we do</li>
           </ScrollLink>
-          <ScrollLink smooth={true} spy={true} duration={500} offset={5} to="pricing">
+          
+          <ScrollLink smooth={true} spy={true} duration={500} activeClass="active" offset={5} to="pricing">
           <li className='text-sm text-[#797979] leading-[14px] font-Anybody font-normal w-[78px] cursor-pointer'>Pricing</li>
           </ScrollLink>
 
