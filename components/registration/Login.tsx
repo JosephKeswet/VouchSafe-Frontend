@@ -1,24 +1,30 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import Logo from '../Assets/logo/VouchSafe_Logo.svg'
-import Button from '../components/Button'
-import Input from '../components/registration/Input'
+import Logo from '../../Assets/logo/VouchSafe_Logo.svg'
+import Button from '../Button'
+import Input from './Input'
 import { motion } from "framer-motion"
-import Login_Bg from '../Assets/img/Login_Bg.png'
-import AppleLogo from '../Assets/icons/Apple Logo.svg'
-import GoogleLogo from '../Assets/icons/Google.svg'
+import Login_Bg from '../../Assets/img/Login_Bg.png'
+import AppleLogo from '../../Assets/icons/Apple Logo.svg'
+import GoogleLogo from '../../Assets/icons/Google.svg'
 import { useRouter } from 'next/router'
 import Axios from "axios";
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../../store'
+import { login } from '../../slices/userSlice'
 
 
 
-type Props = {}
 
-const Login = (props: Props) => {
+
+const Login = () => {
+
+  const dispatch = useDispatch();
   const router = useRouter()
   const [error, setError] = useState(null)
   const [successMessage,setSuccessMessage] = useState('')
+  const [loading,setLoading] = useState(false)
 
 
 
@@ -35,6 +41,7 @@ const Login = (props: Props) => {
   const signIn = async (e:React.SyntheticEvent) =>{
 
     e.preventDefault()
+    setLoading(true)
     const data = {email,password}
 
     const response = await fetch(url,{
@@ -44,19 +51,18 @@ const Login = (props: Props) => {
         "Content-Type":"application/json",
       },
     })
-
       const content = await response.json()
-
-
       if (!response.ok) {
-        throw Error("There was a problem while trying to sign in")
+        console.log("There was a problem while trying to sign in")
       }
-      else if (response.status === 403) {
+      if (response.status === 403) {
         console.log("Email or password incorrect");
       }
       else if (response.ok) {
-        
-        // router.push('/')
+          dispatch(login())
+          setLoading(false)
+          router.push('/BusinessInfo')
+
         setError(null)
         setSuccessMessage("You have successfully logged in...")
         console.log(successMessage);
@@ -74,6 +80,7 @@ const Login = (props: Props) => {
 
   return (
     <div className=''>
+      {loading ? (<div>Loading</div>): (
       <section className="relative  h-screen ">
         <Link href='/'>
           <motion.div 
@@ -135,7 +142,8 @@ const Login = (props: Props) => {
                 <Link href='/ForgotPassword'><p className='text-[#1937AD] text-right text-sm pt-2 leading-[21px] font-Poppins font-normal underline underline-offset-1 cursor-pointer'>Forgot password</p></Link>
               </div>
               <div className='mt-[30px]'>
-                    <button type='submit' className='flex items-center justify-center hover:opacity-70 transition-all duration-500 bg-[#1937AD] text-white text-sm  font-Poppins font-semibold cursor-pointer w-[350px] h-[40px] rounded-[30px]'>Sign in</button>
+                    <button type='submit' className='flex items-center justify-center hover:opacity-70 transition-all duration-500 bg-[#1937AD] text-white text-sm  font-Poppins font-semibold cursor-pointer w-[350px] h-[40px] rounded-[30px]'
+                    >Sign in</button>
               </div>
             </form>
             <div className='mt-[30px]'>
@@ -187,21 +195,9 @@ const Login = (props: Props) => {
                     </div>
 
       </section>
+      )}
     </div>
   )
 }
 
 export default Login
-
-// initial={{ x: -400 }}
-// animate={{
-//   x: 0,
-//   rotateY: 180,
-//   rotateX: 180,
-//   rotateZ:180
-// }}
-// transition={{
-//   duration: 0.9,
-//   type: "spring",
-//   stiffness: 100
-// }}
