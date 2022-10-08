@@ -72,7 +72,7 @@ const Navbar = () => {
  
           <li className='text-sm text-[#797979] leading-[14px] font-Anybody font-normal w-[100px] cursor-pointer'>Developer</li>
     
-        <Link href='/Login'>
+        <Link href='/SignIn'>
           <a>
           <li className='text-sm text-[#797979] leading-[14px] font-Anybody font-normal w-[60px] 
           cursor-pointer'>Sign in</li>

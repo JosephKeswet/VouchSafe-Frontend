@@ -27,7 +27,7 @@ export const userSlice = createSlice({
   }
 })
 
-export const { login } = userSlice.actions
+export const { login,logout } = userSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectUser = (state: RootState) => state.user.isLoggedIn

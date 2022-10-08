@@ -2,8 +2,9 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Router from 'next/router'
 import React, { FC, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Login from '../components/registration/Login'
+import { logout } from '../slices/userSlice'
 import { RootState } from '../store'
 
 
@@ -11,6 +12,8 @@ type Props = {}
 
 const BusinessInfo = (props: Props) => {
     const isLoggedIn = useSelector((state:RootState) => state.user.isLoggedIn)
+    const dispatch = useDispatch();
+
     console.log(isLoggedIn)
 
     const newLocal = 'text-left h-[21px] text-sm font-Poppins font-medium leading-[21px] align-top pl-4 mb-[3px]'
@@ -18,6 +21,11 @@ const BusinessInfo = (props: Props) => {
 
     const [color1,setColor1] = useState(false)
     const [color2,setColor2] = useState(false)
+
+    const handleLogout =()=>{
+        localStorage.clear();
+        dispatch(logout())
+    }
 
 
     const handleColor1 = () =>{
@@ -34,6 +42,7 @@ const BusinessInfo = (props: Props) => {
     }
 
     // const showToken = () =>{}
+
 
    
 
@@ -93,7 +102,11 @@ const BusinessInfo = (props: Props) => {
         </div>
     </section>
     </div>
-    ) : <Login/>}
+    ) 
+    : <Login/>}
+
+    {isLoggedIn && <button className='w-52 h-52 bg-black text-white' onClick={handleLogout}>LOgout</button>}
+ 
     </div>
   )
 }

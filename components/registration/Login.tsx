@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from '../../Assets/logo/VouchSafe_Logo.svg'
 import Button from '../Button'
 import Input from './Input'
@@ -25,6 +25,7 @@ const Login = () => {
   const [error, setError] = useState(null)
   const [successMessage,setSuccessMessage] = useState('')
   const [loading,setLoading] = useState(false)
+  const [user, setUser] = useState('')
 
 
 
@@ -52,6 +53,8 @@ const Login = () => {
       },
     })
       const content = await response.json()
+      setUser(content)
+      console.log("This is for the content",user)
       if (!response.ok) {
         console.log("There was a problem while trying to sign in")
       }
@@ -59,7 +62,12 @@ const Login = () => {
         console.log("Email or password incorrect");
       }
       else if (response.ok) {
+        localStorage.setItem('user', content)
+        console.log(content);
+        if (user) {
           dispatch(login())
+          router.push('/BusinessInfo')
+        }
           setLoading(false)
           router.push('/BusinessInfo')
 
@@ -76,6 +84,15 @@ const Login = () => {
     setEmail('')
     setPassword('')
   }
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = loggedInUser;
+      dispatch(login());
+      setUser(foundUser);
+    }
+  }, []);
 
 
   return (
