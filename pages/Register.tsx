@@ -209,7 +209,7 @@ const Register = (props: Props) => {
                                   </div>
                                 </div>
 
-                                <p className='text-sm text-[#292929] leading-[21px] font-Poppins font-medium text-center'>I already have an account, <Link href='/Login' ><span className='text-[#1937AD] text-sm leading-[21px] font-Poppins font-normal underline underline-offset-1 cursor-pointer'>Sign in.</span></Link></p>
+                                <p className='text-sm text-[#292929] leading-[21px] font-Poppins font-medium text-center'>I already have an account, <Link href='/SignIn' ><span className='text-[#1937AD] text-sm leading-[21px] font-Poppins font-normal underline underline-offset-1 cursor-pointer'>Sign in.</span></Link></p>
                             </div>
                         </div>
                     </form>

@@ -44,7 +44,7 @@ const Login = () => {
     e.preventDefault()
     setLoading(true)
     const data = {email,password}
-
+    try{
     const response = await fetch(url,{
       method:'POST',
       body:JSON.stringify(data),
@@ -55,27 +55,35 @@ const Login = () => {
       const content = await response.json()
       setUser(content)
       console.log("This is for the content",user)
+      
       if (!response.ok) {
+        setLoading(false)
         console.log("There was a problem while trying to sign in")
       }
       if (response.status === 403) {
+        setLoading(false)
         console.log("Email or password incorrect");
       }
       else if (response.ok) {
         localStorage.setItem('user', content)
+        dispatch(login())
+        router.push('/BusinessRoutes/BusinessInfo')
         console.log(content);
         if (user) {
           dispatch(login())
-          router.push('/BusinessInfo')
+          router.push('/BusinessRoutes/BusinessInfo')
         }
-          setLoading(false)
-          router.push('/BusinessInfo')
-
+        setLoading(false)
         setError(null)
         setSuccessMessage("You have successfully logged in...")
         console.log(successMessage);
   
       }
+    }catch(err){
+      setLoading(false)
+      console.log(err);
+    }
+   
 
     
 

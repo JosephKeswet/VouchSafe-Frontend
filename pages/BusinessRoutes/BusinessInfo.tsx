@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Router from 'next/router'
 import React, { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Login from '../components/registration/Login'
-import { logout } from '../slices/userSlice'
-import { RootState } from '../store'
+import Button_Info from '../../components/Button_Info'
+import Login from '../../components/registration/Login'
+import { logout } from '../../slices/userSlice'
+import { RootState } from '../../store'
 
 
 type Props = {}
@@ -19,7 +20,7 @@ const BusinessInfo = (props: Props) => {
     const newLocal = 'text-left h-[21px] text-sm font-Poppins font-medium leading-[21px] align-top pl-4 mb-[3px]'
 
 
-    const [color1,setColor1] = useState(false)
+    // const [color1,setColor1] = useState(false)
     const [color2,setColor2] = useState(false)
 
     const handleLogout =()=>{
@@ -28,17 +29,17 @@ const BusinessInfo = (props: Props) => {
     }
 
 
-    const handleColor1 = () =>{
-        setColor1(true)
-        console.log(color1)
-        Router.push('/')
-    }
+    // const handleColor1 = () =>{
+    //     setColor1(true)
+    //     console.log(color1)
+    //     // Router.push('/')
+    // }
 
 
     const handleColor2 = () =>{
         setColor2(true)
         console.log(color2)
-        Router.push('/')
+        // Router.push('/BusinessInfo/BusinessInfo_E1')
     }
 
     // const showToken = () =>{}
@@ -79,23 +80,9 @@ const BusinessInfo = (props: Props) => {
              <div>
                 <h1 className=' pl-4 text-[#292929] text-sm text-left pb-1 font-Poppins font-medium leading-[21px]'>What is the nature of your business?</h1>
                 <div className='flex justify-between'>
-                    <button className={!color1? 
-                    'business-border-gradient relative w-[284px] h-[40px] border border-solid border-[#E1E1E1] bg-white rounded-[50px] text-[#797979] text-sm font-Poppins font-medium leading-[21px]  ' 
-                    : 'w-[284px] h-[40px] border border-solid border-[#E1E1E1] rounded-[50px] text-white bg-[#1937AD] text-sm font-Poppins font-medium leading-[21px]'
-                    }
-                    onClick={handleColor1}
-                    ><span className={!color1? 'absolute z-30 left-0 right-0 top-2 bottom-0 hover:bg-clip-text hover:bg-gradient-to-r  hover:from-[#1937AD] hover:to-[#F93DE6] hover:text-transparent' 
-                    : 'text-white'    
-                }>Physical Commerce</span></button>
 
-                    <button className={!color2? 
-                    'business-border-gradient relative w-[284px] h-[40px] border border-solid border-[#E1E1E1] bg-white rounded-[50px] text-[#797979] text-sm font-Poppins font-medium leading-[21px]  ' 
-                    : 'w-[284px] h-[40px] border border-solid border-[#E1E1E1] rounded-[50px] text-white bg-[#1937AD] text-sm font-Poppins font-medium leading-[21px]'
-                    }
-                    onClick={handleColor2}
-                    ><span className={!color2? 'absolute z-30 left-0 right-0 top-2 bottom-0 hover:bg-clip-text hover:bg-gradient-to-r  hover:from-[#1937AD] hover:to-[#F93DE6] hover:text-transparent' 
-                    : 'text-white'    
-                }>E-Commerce</span></button>
+                    <Button_Info text='Physical Commerce' route='/' width='w-[284px]' />
+                    <Button_Info text='E-Commerce' route='/BusinessRoutes/BusinessInfo_E1' width='w-[284px]'/>
                 </div>
              </div>
                           
@@ -105,7 +92,7 @@ const BusinessInfo = (props: Props) => {
     ) 
     : <Login/>}
 
-    {isLoggedIn && <button className='w-52 h-52 bg-black text-white' onClick={handleLogout}>LOgout</button>}
+    {isLoggedIn && <button className='w-52 h-52 bg-black text-white' onClick={handleLogout}>Logout</button>}
  
     </div>
   )
