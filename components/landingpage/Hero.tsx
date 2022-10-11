@@ -5,7 +5,7 @@ import DashboardSmall from '../../Assets/img/Dashboard 3.png'
 import Logo from '../../Assets/logo/VouchSafe_Logo.svg'
 import Button from '../Button'
 import Link from 'next/link'
-// import { Link } from 'react-scroll'
+
 
 
 type Props = {}
@@ -62,9 +62,9 @@ const Hero = (props: Props) => {
                             <h2 className='text-[#1937AD] text-xl leading-[21px]  font-Anybody font-bold pl-[10px] h-[15px]'>vouchsafe</h2>
                             </div>
                             
-                        {/* <Link  smooth={true} spy={true} duration={500} offset={5} to="pricing"> */}
+                      
                             <h1 className='w-[190px] h-[51px] text-[#797979] text-[48px] leading-[50px] font-Anybody font-normal cursor-pointer hover:bg-clip-text hover:bg-gradient-to-r  hover:from-[#1937AD] hover:to-[#F93DE6] hover:text-transparent hover:font-Courgette hover:text-[60px] hover:h-[60px]'>Pricing</h1>
-                        {/* </Link> */}
+            
                         </div>
                         
                         <h1 className='absolute top-24 left-[260px] w-[270px] text-[#797979] text-[48px] leading-[50px] font-Anybody font-normal cursor-pointer hover:bg-clip-text hover:bg-gradient-to-r  hover:from-[#1937AD] hover:to-[#F93DE6] hover:text-transparent hover:font-Courgette hover:text-[60px]'>Developer</h1>

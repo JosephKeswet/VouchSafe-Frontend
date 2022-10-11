@@ -26,37 +26,42 @@ const Register = (props: Props) => {
   const [error,setError] = useState(null)
 
   
-  const signUp = (e:React.SyntheticEvent) => {
+  const signUp = async (e:React.SyntheticEvent) => {
     e.preventDefault()
     const data = {email,firstName,lastName,password}
 
-    fetch (baseUrl,{
+    const response = await fetch (baseUrl,{
       method:'POST',
       body:JSON.stringify(data),
       headers:{
         "Content-Type":"application/json",
       },
     
-    }).then((res) => {
-      console.log(res.status);
-    if (!res.ok) {
-      throw Error('There was a problem while trying to sign up')
-    }
-    else if (res.status === 403) {
-      setErrorMessage("User credentials taken")
-      console.log(errorMessage)
-    } 
-    else if (res.ok) {
-      res.json()
-      router.push('/Login')
-      setError(null)
-      setSuccessMessage("You have successfully created your account check your email to verify")
-      console.log(successMessage);
-
-    }
-    }).catch((err) =>{
-      setError(err.message)
     })
+    try{
+      const content = await response.json()
+
+      if (!response.ok) {
+        throw Error(content.message)
+      }
+      else if (response.status === 403) {
+        setErrorMessage(content.message)
+        console.log(errorMessage)
+      } 
+      else if (response.ok) {
+      
+        router.push('/SignIn')
+        setError(null)
+        setSuccessMessage(content.message)
+        console.log(content.message);
+
+      }
+    }catch(err){
+      // setError(content.message)
+      console.log(err);
+  
+    }
+
     setEmail('')
     setFirstName('')
     setLastName('')
@@ -64,17 +69,7 @@ const Register = (props: Props) => {
   }
 
 
-//   const signUp = (e:React.SyntheticEvent) => {
-//     e.preventDefault();
-//     const data = {email,firstName,lastName,password}
 
-
-//     axios.post('https://vouchsafe-backend-api.herokuapp.com/api/v1/vouchsafe/auth/signup', {data})
-//        .then((res) => {res.data})
-//        .catch((err) => {
-//           console.log(err.message);
-//        });
-//  };
 
 
 

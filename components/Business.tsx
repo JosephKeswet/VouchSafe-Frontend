@@ -1,37 +1,115 @@
-import { faArrowLeft,faArrowDown} from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft,faArrowDown, faArrowRight} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import Button_Info from './Button_Info'
 
 interface Props{
-    typeOfBusiness:string[],
-    country:string,
-    State:string,
-    zipCode:string,
-    LGA:string,
-    street:string,
-    businessSector:string,
-    route1:string,
-    route2:string
+    typeOfBusiness?:string[],
+    country?:string,
+    State?:string,
+    zipCode?:string,
+    LGA?:string,
+    street?:string,
+    businessSector?:string,
+    route1?:string,
+    route2?:string
 }
+
+const EmptyComponent = () =>(
+    <div></div>
+)
+
+const AComponent = () => (<div>
+    <h1 className=' pl-4 text-[#292929] text-sm text-left pb-1 font-Poppins font-medium leading-[21px]'>
+<span className='text-[#E80000]'>*</span> Boutique</h1>
+<div className='flex justify-center gap-[10px] items-center flex-wrap mb-[30px]'>
+<Button_Info text='Trift' width='w-[186px]' route='' />
+<Button_Info text='Tailor' width='w-[186px]' route=''/>
+<Button_Info text='New wears' width='w-[186px]' route=''/>
+</div>
+<hr />   
+</div>)
+
+const BComponent = () =>(
+    <div>
+            <h1 className=' pl-4 text-[#292929] text-sm text-left pb-1 font-Poppins font-medium leading-[21px]'>
+               <span className='text-[#E80000]'>*</span> Phone/Laptop store</h1>
+            <div className='flex justify-center gap-[10px] items-center flex-wrap mb-[30px]'>
+               <Button_Info text='Phone' width='w-[186px]' route='' />
+               <Button_Info text='Laptop' width='w-[186px]' route=''/>
+               <Button_Info text='Accessoriess' width='w-[186px]' route=''/>
+            </div>
+            <hr />   
+            </div>
+)
+
+const CComponent = () => (
+    <div>
+            <h1 className=' pl-4 text-[#292929] text-sm text-left pb-1 font-Poppins font-medium leading-[21px]'>
+               <span className='text-[#E80000]'>*</span> Supermarket</h1>
+            <div className='flex justify-center gap-[10px] items-center flex-wrap mb-[30px]'>
+               <Button_Info text='Provisions' width='w-[284px]' route='' />
+               <Button_Info text='Non-provisions' width='w-[284px]' route=''/>
+            </div>
+            <hr />   
+    </div>
+)
 
 
 
 const Business = ({typeOfBusiness,country,State,zipCode,LGA,street,businessSector,route1,route2}: Props) => {
-    const [show,setShow] = useState(false)
+    // const [boutique,setBoutique] = useState(false)
+    // const [phone,setPhone] = useState(false)
+    // const [supermarket,setSuperMarket] = useState(false)
 
-    const showContent = ()=>{
-        if (!show) {
-            setShow(true)
+    // const showContent = ()=>{
+    //     if (!boutique) {
+    //         setBoutique(true)
+    //     }else{
+    //         setBoutique(false)
+    //     }
+
+    // }
+
+    // const showPhone = () =>{
+
+    //     if (!phone) {
+    //         setPhone(true)
+    //     }else{
+    //         setPhone(false)
+    //     }
+    // }
+
+    // const showMarket = () =>{
+
+    //     if (!supermarket) {
+    //         setSuperMarket(true)
+    //     }else{
+    //         setSuperMarket(false)
+    //     }
+    // }
+    const [Component, setComponent] = useState(() => EmptyComponent);
+    const [height,setHeight] = useState(false)
+    const [show, setShow] = useState(false);
+
+    const heightHandler = () =>{
+        if (height) {
+            setHeight(false)
         }else{
-            setShow(false)
+            setHeight(true)
+        }
+        if (show) {
+        setShow(false)
+        }else{
+            setShow(true)
         }
     }
 
+
   return (
-<div className='flex justify-center items-center bg-[#797979] h-screen'>
-        <section className={show ? 'w-[978px] h-[730px] bg-white shadow-lg rounded-[15px] mt-[100px] mb-[100px] transition-all duration-300 ease-in-out ' 
+        <div className='flex justify-center items-center bg-[#797979] h-screen'>
+        <section className={(height)? 'w-[978px] h-[730px] bg-white shadow-lg rounded-[15px] mt-[100px] mb-[100px] transition-all duration-300 ease-in-out ' 
         : 'w-[978px] h-[700px] bg-white shadow-lg rounded-[15px] transition-all duration-300 ease-in-out  ' }>
             
         {/* Top section */}
@@ -46,7 +124,8 @@ const Business = ({typeOfBusiness,country,State,zipCode,LGA,street,businessSecto
         </div>
 
         {/* Middle section */}
-
+    
+  
         <div className='mt-[60px] w-[568px] mx-auto'>
                 <h1 className=' pl-4 text-[#292929] text-sm text-left pb-1 font-Poppins font-medium leading-[21px]'>
                    <span className='text-[#E80000]'>*</span> Is your business a wholesale or a retail business?</h1>
@@ -60,28 +139,35 @@ const Business = ({typeOfBusiness,country,State,zipCode,LGA,street,businessSecto
 
             <div className='mt-[60px]  w-[578px] mx-auto'>
                 <h1 className=' pl-4 text-[#292929] text-sm text-left pb-1 font-Poppins font-medium leading-[21px]'>
-                   <span className='text-[#E80000]'>*</span> Is your business a wholesale or a retail business?</h1>
+                   <span className='text-[#E80000]'>*</span> What type of business are you</h1>
                 <div className='flex justify-center gap-[10px] items-center flex-wrap mb-[30px]'>
-                    <div onClick={showContent}>
+                    <div onClick={() => {
+                        setComponent(() => AComponent)
+                        heightHandler()
+                    }}>
                         <Button_Info text='Boutique' width='w-[186px]' route='' />
                     </div>
                    <Button_Info text='Electronic store' width='w-[186px]' route=''/>
+                   <div onClick={() => {
+                    setComponent(() => BComponent)
+                    heightHandler()
+                }}>
                    <Button_Info text='Phone/Laptop store' width='w-[186px]' route=''/>
+                   </div>
+                   <div onClick={() => {
+                    setComponent(() => CComponent)
+                    heightHandler()
+                }}>
                    <Button_Info text='Supermarket' width='w-[284px]' route=''/>
+                   </div>
                    <Button_Info text='Provision store' width='w-[284px]' route=''/>
                 </div>
-                {!show && <hr />}   
-
-                {show && <div>
-                <h1 className=' pl-4 text-[#292929] text-sm text-left pb-1 font-Poppins font-medium leading-[21px]'>
-                   <span className='text-[#E80000]'>*</span> Boutique</h1>
-                <div className='flex justify-center gap-[10px] items-center flex-wrap mb-[30px]'>
-                   <Button_Info text='Trift' width='w-[186px]' route='' />
-                   <Button_Info text='Tailor' width='w-[186px]' route=''/>
-                   <Button_Info text='New wears' width='w-[186px]' route=''/>
-                </div>
-                <hr />   
-                </div>}
+                {/* Conditional rendered content */}
+                {(!show) && <hr />}   
+                    <div>
+                        {show ? <Component/> : <div></div>}
+                    </div>
+                {/* End of conditional rendered content */}
 
                 <main className='flex flex-wrap gap-[10px] mt-[30px] mb-[20px]'>
                     <div >
@@ -145,6 +231,11 @@ const Business = ({typeOfBusiness,country,State,zipCode,LGA,street,businessSecto
                 <FontAwesomeIcon icon={faArrowLeft} className='text-xs '/>
                 <h1 className='text-sm leading-[21px] font-Poppins font-medium'>Previous</h1>
             </div>
+
+            <div className='absolute bottom-[100px] transition-all duration-300 ease-in-out flex items-center ml-[850px] cursor-pointer '>
+                <button  className='w-[100px] h-[40px] bg-[#1937AD] rounded-[50px] text-center text-white leading-[21px] font-Poppins font-semibold'>Finish <FontAwesomeIcon icon={faArrowRight} className='pl-[5px]'/></button>
+            </div>
+
     </section>
     </div>
   )

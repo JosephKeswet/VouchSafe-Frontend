@@ -2,8 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Logo from '../../Assets/logo/VouchSafe_Logo.svg'
-import Button from '../Button'
-import Input from './Input'
 import { motion } from "framer-motion"
 import Login_Bg from '../../Assets/img/Login_Bg.png'
 import AppleLogo from '../../Assets/icons/Apple Logo.svg'
@@ -22,22 +20,18 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const router = useRouter()
+
+  // States
   const [error, setError] = useState(null)
   const [successMessage,setSuccessMessage] = useState('')
   const [loading,setLoading] = useState(false)
   const [user, setUser] = useState('')
-
-
-
-  // /api/v1/vouchsafe/auth/signin
-  const url = 'https://vouchsafe-backend-api.herokuapp.com/api/v1/vouchsafe/auth/signin'
-
+  const [auth,setAuth] = useState('')
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
 
 
-
-
+  const url = 'https://vouchsafe-backend-api.herokuapp.com/api/v1/vouchsafe/auth/signin'
 
   const signIn = async (e:React.SyntheticEvent) =>{
 
@@ -54,29 +48,31 @@ const Login = () => {
     })
       const content = await response.json()
       setUser(content)
-      console.log("This is for the content",user)
       
       if (!response.ok) {
         setLoading(false)
-        console.log("There was a problem while trying to sign in")
+        console.log(content.message)
       }
-      if (response.status === 403) {
-        setLoading(false)
-        console.log("Email or password incorrect");
-      }
-      else if (response.ok) {
+ 
+        setAuth(content.message)
+
+
+        setAuth(content.message)
+        console.log(content.message);
+
+      if (response.ok) {
         localStorage.setItem('user', content)
         dispatch(login())
         router.push('/BusinessRoutes/BusinessInfo')
-        console.log(content);
+
         if (user) {
           dispatch(login())
           router.push('/BusinessRoutes/BusinessInfo')
         }
         setLoading(false)
         setError(null)
-        setSuccessMessage("You have successfully logged in...")
-        console.log(successMessage);
+        setSuccessMessage(content.message)
+        console.log(content);
   
       }
     }catch(err){
@@ -149,7 +145,10 @@ const Login = () => {
                               <label className='text-left h-[21px] text-sm font-Poppins font-medium leading-[21px] align-top pl-4 mb-[3px]'>Email address</label>
                                 <input type='email' name="" id=""
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => {
+                                  setEmail(e.target.value)
+                                  setAuth('')
+                                }}
                                 className={`w-[350px] h-[40px] pl-4 outline-none border border-solid border-[#E1E1E1] rounded-[50px]`} required/>
                               </div>
 
@@ -158,7 +157,10 @@ const Login = () => {
                               <label className='text-left h-[21px] text-sm font-Poppins font-medium leading-[21px] align-top pl-4 mb-[3px]'>Password</label>
                                 <input type='password' name=""  id="" 
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e) => {
+                                  setPassword(e.target.value)
+                                  setAuth('')
+                                }}
                                 className={`w-[350px] h-[40px] pl-4 outline-none border border-solid border-[#E1E1E1] rounded-[50px]`} required/>
                               </div>
           
@@ -170,6 +172,7 @@ const Login = () => {
                     <button type='submit' className='flex items-center justify-center hover:opacity-70 transition-all duration-500 bg-[#1937AD] text-white text-sm  font-Poppins font-semibold cursor-pointer w-[350px] h-[40px] rounded-[30px]'
                     >Sign in</button>
               </div>
+              {auth ? <div>{auth}</div> : <div></div> }
             </form>
             <div className='mt-[30px]'>
             <p className='text-center text-[#292929] text-sm leading-[21px] mb-[20px] mt-[30px] font-Poppins font-medium'>Or sign in using</p>

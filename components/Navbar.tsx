@@ -1,33 +1,28 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import React, { ReactEventHandler, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import Logo from '../Assets/logo/VouchSafe_Logo.svg'
 import Button from './Button'
 import Link from 'next/link'
 import {Link as ScrollLink} from 'react-scroll'
-import { useActiveMenu } from "react-active-menu";
+
 
 
 
 
 const Navbar = () => {
   const router = useRouter()
-  const [color,setColor] = useState('')
+  const [color,setColor] = useState(false)
 
-  // const getColor = (curr:string)=>{  
-  //   if (active == false) {
-  //     setActive(true)
-  //   }
-  //   console.log(active)
-  // }
+  
 
 
 
-  const handleClick = (e:React.SyntheticEvent,curr:string) =>{
-      if (e.currentTarget.id === curr) {
-        setColor('text-blue-500')
+  const handleClick = () =>{
+      if (color) {
+        setColor(true)
       }else{
-        setColor('')
+        setColor(false)
       }
   }
 
@@ -55,7 +50,8 @@ const Navbar = () => {
 
         <ScrollLink smooth={true} spy={true} activeClass="active" duration={500} offset={5} to="works">
 
-          <li className= {`${color} text-sm text-[#797979] leading-[14px] font-Anybody font-normal w-[119px] cursor-pointer`}
+          <li className= {!color ? 'text-sm text-[#797979] leading-[14px] font-Anybody font-normal w-[119px] cursor-pointer' : 'bg-black text-yellow-500'}
+          onClick={handleClick}
           >
             How it works</li>
         </ScrollLink>
