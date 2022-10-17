@@ -188,9 +188,8 @@ const Register = (props: Props) => {
                                 <p className='text-sm text-[#292929] text-center leading-[21px] font-Poppins font-normal'>By signing up, you agree to our <Link href='#' ><span className='text-[#1937AD] text-sm leading-[21px] font-Poppins font-normal underline underline-offset-1 cursor-pointer'>Terms of Use and Privacy Policy. </span></Link></p>
                             </div>
                             <div>
-                                    <button type='submit' className='flex items-center justify-center hover:opacity-70 transition-all duration-500 bg-[#1937AD] text-white text-sm  font-Poppins font-semibold cursor-pointer w-[350px] h-[40px] rounded-[30px]'>Create account
-                                    </button>
-                                    {error && <div>{error}</div>}
+                                <button type='submit' className='flex items-center justify-center hover:opacity-70 transition-all duration-500 bg-[#1937AD] text-white text-sm  font-Poppins font-semibold cursor-pointer w-[350px] h-[40px] rounded-[30px]'>Create account
+                                </button>
                             </div>
                             <div className='mt-[30px]'>
                                 <p className='text-center text-[#292929] text-sm leading-[21px] mb-[20px] mt-[30px] font-Poppins font-medium'>Or create an account using</p>

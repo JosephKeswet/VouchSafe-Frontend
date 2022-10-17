@@ -1,7 +1,7 @@
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Router from 'next/router'
-import React, { useState } from 'react'
+import Router, { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Button_Info from '../../components/Button_Info'
 import Login from '../../components/registration/Login'
@@ -14,6 +14,7 @@ type Props = {}
 const BusinessInfo = (props: Props) => {
     const isLoggedIn = useSelector((state:RootState) => state.user.isLoggedIn)
     const dispatch = useDispatch();
+    const router = useRouter()
 
     console.log(isLoggedIn)
 
@@ -26,14 +27,13 @@ const BusinessInfo = (props: Props) => {
     const handleLogout =()=>{
         localStorage.clear();
         dispatch(logout())
+        router.push('/SignIn')
     }
 
 
-    // const handleColor1 = () =>{
-    //     setColor1(true)
-    //     console.log(color1)
-    //     // Router.push('/')
-    // }
+  useEffect(()=>{
+    handleLogout()
+  },[isLoggedIn])
 
 
     const handleColor2 = () =>{

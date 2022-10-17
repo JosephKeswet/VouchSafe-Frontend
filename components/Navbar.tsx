@@ -33,12 +33,10 @@ const Navbar = () => {
       <nav className='fixed bg-white   right-0 left-0 bottom-0 top-0 z-50 flex px-[50px] justify-between items-center h-[90px] '>
 
       <Link href='/'>
-        <a>
         <div className='flex  items-center w-[152.48px] h-[31px] cursor-pointer'>
           <Image src={Logo} alt="Vouchsafe logo"  />
           <h2 className='text-[#1937AD] text-xl leading-[21px]  font-Anybody font-bold pl-[10px] h-[15px]'>vouchsafe</h2>
         </div>
-        </a>
       </Link>
     
         

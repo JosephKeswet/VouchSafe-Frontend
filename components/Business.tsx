@@ -1,7 +1,8 @@
 import { faArrowLeft,faArrowDown, faArrowRight} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
+import useButton from '../hooks/useButton'
 import Button_Info from './Button_Info'
 
 interface Props{
@@ -16,11 +17,10 @@ interface Props{
     route2?:string
 }
 
-const EmptyComponent = () =>(
-    <div></div>
-)
 
-const AComponent = () => (<div>
+
+
+const BoutiqueComponent = () => (<div>
     <h1 className=' pl-4 text-[#292929] text-sm text-left pb-1 font-Poppins font-medium leading-[21px]'>
 <span className='text-[#E80000]'>*</span> Boutique</h1>
 <div className='flex justify-center gap-[10px] items-center flex-wrap mb-[30px]'>
@@ -31,9 +31,10 @@ const AComponent = () => (<div>
 <hr />   
 </div>)
 
-const BComponent = () =>(
+const PhoneComponent = () =>{
+    return (
     <div>
-            <h1 className=' pl-4 text-[#292929] text-sm text-left pb-1 font-Poppins font-medium leading-[21px]'>
+        <h1 className=' pl-4 text-[#292929] text-sm text-left pb-1 font-Poppins font-medium leading-[21px]'>
                <span className='text-[#E80000]'>*</span> Phone/Laptop store</h1>
             <div className='flex justify-center gap-[10px] items-center flex-wrap mb-[30px]'>
                <Button_Info text='Phone' width='w-[186px]' route='' />
@@ -41,10 +42,10 @@ const BComponent = () =>(
                <Button_Info text='Accessoriess' width='w-[186px]' route=''/>
             </div>
             <hr />   
-            </div>
-)
+    </div>
+)}
 
-const CComponent = () => (
+const SupermarketComponent = () => (
     <div>
             <h1 className=' pl-4 text-[#292929] text-sm text-left pb-1 font-Poppins font-medium leading-[21px]'>
                <span className='text-[#E80000]'>*</span> Supermarket</h1>
@@ -59,39 +60,12 @@ const CComponent = () => (
 
 
 const Business = ({typeOfBusiness,country,State,zipCode,LGA,street,businessSector,route1,route2}: Props) => {
-    // const [boutique,setBoutique] = useState(false)
-    // const [phone,setPhone] = useState(false)
-    // const [supermarket,setSuperMarket] = useState(false)
 
-    // const showContent = ()=>{
-    //     if (!boutique) {
-    //         setBoutique(true)
-    //     }else{
-    //         setBoutique(false)
-    //     }
-
-    // }
-
-    // const showPhone = () =>{
-
-    //     if (!phone) {
-    //         setPhone(true)
-    //     }else{
-    //         setPhone(false)
-    //     }
-    // }
-
-    // const showMarket = () =>{
-
-    //     if (!supermarket) {
-    //         setSuperMarket(true)
-    //     }else{
-    //         setSuperMarket(false)
-    //     }
-    // }
-    const [Component, setComponent] = useState(() => EmptyComponent);
+    const [Component, setComponent] = useState(() => BoutiqueComponent);
     const [height,setHeight] = useState(false)
-    const [show, setShow] = useState(false);
+    const getId = (e:React.SyntheticEvent) =>{
+        console.log(e.currentTarget.id);
+    }
 
     const heightHandler = () =>{
         if (height) {
@@ -99,12 +73,44 @@ const Business = ({typeOfBusiness,country,State,zipCode,LGA,street,businessSecto
         }else{
             setHeight(true)
         }
-        if (show) {
-        setShow(false)
-        }else{
-            setShow(true)
-        }
     }
+
+    // var emptyArray:string[] = [];
+    // const [active,setActive] = useState(false);
+   
+
+
+    // const buttonCheck = (e:React.SyntheticEvent) =>{
+    //     const checkedId = emptyArray.includes(e.currentTarget.id);
+    //     emptyArray.push(e.currentTarget.id)
+    //     console.log(emptyArray)
+
+    //     // const arrayLength = emptyArray.length;
+    //     // if (checkedId && emptyArray.length == 1) {
+    //     //   setHeight(false);
+    //     //   setActive(false);
+    //     //   console.log(emptyArray);
+    //     //   let newArray:string[] = emptyArray.filter((id) =>{
+    //     //     return id == e.currentTarget.id
+    //     //   })
+
+         
+    //     //   console.log(newArray)
+    //     //   // emptyArray.pop(e.currentTarget.id)
+    //     //   console.log(e.currentTarget.id);
+    //     // }else if (!checkedId) {
+    //     //   emptyArray.push(e.currentTarget.id)
+    //     //   setHeight(true);
+    //     //   setActive(true);
+    //     // }else if (arrayLength <= 0) {
+    //     //   setHeight(false);
+    //     //   setActive(false);
+    //     // }else if (arrayLength >= 1) {
+    //     //   setHeight(true);
+    //     // }
+    // }
+
+
 
 
   return (
@@ -141,31 +147,44 @@ const Business = ({typeOfBusiness,country,State,zipCode,LGA,street,businessSecto
                 <h1 className=' pl-4 text-[#292929] text-sm text-left pb-1 font-Poppins font-medium leading-[21px]'>
                    <span className='text-[#E80000]'>*</span> What type of business are you</h1>
                 <div className='flex justify-center gap-[10px] items-center flex-wrap mb-[30px]'>
-                    <div onClick={() => {
-                        setComponent(() => AComponent)
+                    <div onClick={(e) => {
+                        setComponent(() => BoutiqueComponent)
                         heightHandler()
-                    }}>
+                        // buttonCheck(e)
+                        getId(e)
+                    }}
+                    id='Boutique'
+                    >
                         <Button_Info text='Boutique' width='w-[186px]' route='' />
                     </div>
                    <Button_Info text='Electronic store' width='w-[186px]' route=''/>
-                   <div onClick={() => {
-                    setComponent(() => BComponent)
-                    heightHandler()
-                }}>
+                   <div onClick={(e) => {
+                    setComponent(() => PhoneComponent)
+                        // buttonCheck(e)
+                        heightHandler()
+              
+                    getId(e)
+                }}
+                id='Phone'
+                >
                    <Button_Info text='Phone/Laptop store' width='w-[186px]' route=''/>
                    </div>
-                   <div onClick={() => {
-                    setComponent(() => CComponent)
+                   <div onClick={(e) => {
+                    setComponent(() => SupermarketComponent)
                     heightHandler()
-                }}>
+                    // buttonCheck(e)
+                    getId(e)
+                }}
+                id='Supermarket'
+                >
                    <Button_Info text='Supermarket' width='w-[284px]' route=''/>
                    </div>
-                   <Button_Info text='Provision store' width='w-[284px]' route=''/>
+                   <Button_Info text='Provision sttore' width='w-[284px]' route=''/>
                 </div>
                 {/* Conditional rendered content */}
-                {(!show) && <hr />}   
+                {(!height) && <hr />}   
                     <div>
-                        {show ? <Component/> : <div></div>}
+                        {height  ? <Component/> : <div></div>}
                     </div>
                 {/* End of conditional rendered content */}
 
